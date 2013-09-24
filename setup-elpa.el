@@ -53,6 +53,11 @@
   (setq exec-path-from-shell-variables '("PATH"  "MANPATH" "SHELL"))
   (exec-path-from-shell-initialize)
 
+  ;;; osx-pseudo-daemon - Stop the last Emacs frame from dying under daemon mode
+  ;;; https://github.com/DarwinAwardWinner/osx-pseudo-daemon
+  (require-package 'osx-pseudo-daemon)
+  (require 'osx-pseudo-daemon)
+
   (when (display-graphic-p)
     ;;; solarized-theme - Emacs version of Solarized
     ;;; https://github.com/bbatsov/solarized-emacs

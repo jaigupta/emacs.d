@@ -32,8 +32,8 @@ the quit."
   (interactive)
   (if server-buffer-clients
       (server-edit)
-    (cond ((y-or-n-p "Quit Emacs? ")
-           (save-buffers-kill-terminal)))))
+    (cond ((bound-and-true-p osx-pseudo-daemon-mode) (save-buffers-kill-terminal))
+          ((y-or-n-p "Quit Emacs? ") (save-buffers-kill-terminal)))))
 
 (global-set-key (kbd "C-x C-c") 'bw/kill-emacs)
 

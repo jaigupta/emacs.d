@@ -138,7 +138,18 @@
 
     ;; Override defaults to use the mac copy and paste
     (setq interprogram-cut-function 'bw/paste-to-osx)
-    (setq interprogram-paste-function 'bw/copy-from-osx)))
+    (setq interprogram-paste-function 'bw/copy-from-osx)
+
+    (bw/add-to-custom-theme-load-path (bw/join-dirs dotfiles-dir "themes/color-theme-solarized"))
+    (load-theme 'solarized t)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                "Reenable solarized"
+                (enable-theme 'solarized)))
+
+    (setq-default frame-background-mode 'dark)
+    (set-frame-parameter nil 'background-mode 'dark)
+    (enable-theme 'solarized)))
 
 ;; smart beginning-of-line, from:
 ;; http://irreal.org/blog/?p=1946

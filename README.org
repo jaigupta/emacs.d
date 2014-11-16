@@ -1486,8 +1486,10 @@ Finally we can install Magit:
 [[https://github.com/DarwinAwardWinner/ido-ubiquitous][ido-ubiquitous]] mode enables ido in many more places than the default ido setup:
 
 #+begin_src emacs-lisp
-  (require-package 'ido-ubiquitous)
-  (ido-ubiquitous-mode 1)
+  (use-package ido-ubiquitous
+    :commands ido-ubiquitous-mode
+    :idle (ido-ubiquitous-mode 1)
+    :ensure ido-ubiquitous)
 #+end_src
 
 *** ido-vertical

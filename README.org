@@ -1959,9 +1959,12 @@ evil to start in =emacs-mode=, for example:
 =show-smartparens-mode= is a replacement mode for =show-paren-mode=.
 
 #+begin_src emacs-lisp
-  (require-package 'smartparens)
-  (require 'smartparens-config)
-  (show-smartparens-global-mode 1)
+  (use-package smartparens
+    :commands show-smartparens-global-mode
+    :idle (progn
+            (use-package smartparens-config
+              :init (show-smartparens-global-mode 1)))
+    :ensure smartparens)
 #+end_src
 
 *** company

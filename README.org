@@ -1312,6 +1312,15 @@ I only want this to be installed and enabled on OS X.
 known as =M-x=).
 
 #+begin_src emacs-lisp
+  (use-package smex
+    :commands smex
+    :config (progn
+              (setq-default smex-key-advice-ignore-menu-bar t)
+              (setq smex-save-file (expand-file-name ".smex-items" bw/tmp-local-dir)))
+    :ensure smex)
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
   (require-package 'smex)
 #+end_src
 
@@ -1323,13 +1332,13 @@ Replace =execute-extended-command='s keyboard shortcuts:
 
 Make sure we stop the annoying "click this menubar" advice in the buffer:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq-default smex-key-advice-ignore-menu-bar t)
 #+end_src
 
 Move =smex='s cache file out of the home directory:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq smex-save-file (expand-file-name ".smex-items" bw/tmp-local-dir))
 #+end_src
 

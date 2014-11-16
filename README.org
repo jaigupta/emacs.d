@@ -2403,8 +2403,8 @@ Automatically rescan the current file so =imenu= is up to date:
 various RFCs and specifications.
 
 #+begin_src emacs-lisp
-  (require-package 'know-your-http-well)
-  (require 'know-your-http-well)
+  (use-package know-your-http-well
+    :idle)
 #+end_src
 
 *** yaml-mode

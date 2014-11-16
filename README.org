@@ -2412,7 +2412,10 @@ various RFCs and specifications.
 Regrettably I need to occasionally edit [[http://www.yaml.org][YAML]].
 
 #+begin_src emacs-lisp
-  (require-package 'yaml-mode)
+  (use-package yaml-mode
+    :commands yaml-mode
+    :mode "\\.yml|yaml\\'"
+    :ensure yaml-mode)
 #+end_src
 
 ** Local and custom configuration

@@ -1513,19 +1513,26 @@ to reduce the maximum number of candidates ido displays:
 more accurate than the built-in method.
 
 #+begin_src emacs-lisp
+  (use-package flx-ido
+    :config (setq gc-cons-threshold 20000000)
+    :idle (flx-ido-mode 1)
+    :ensure flx-ido)
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
   (require-package 'flx-ido)
 #+end_src
 
 The =flx-ido= documentation suggests upping the threshold at which GC occurs
 within Emacs so that =flx= can cache its candidate lists for longer:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq gc-cons-threshold 20000000)
 #+end_src
 
 Finally we cause =flx-ido-mode= to take over ido:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (flx-ido-mode 1)
 #+end_src
 

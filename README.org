@@ -2279,7 +2279,10 @@ and install and load =company-go=:
 [[https://github.com/lunaryorn/puppet-mode][puppet-mode]] is a major mode for editing =.pp= files.
 
 #+begin_src emacs-lisp
-  (require-package 'puppet-mode)
+  (use-package puppet-mode
+    :mode "\\.pp\\'"
+    :commands puppet-mode
+    :ensure puppet-mode)
 #+end_src
 
 *** markdown-mode

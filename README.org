@@ -1498,14 +1498,17 @@ Finally we can install Magit:
 find this easier to read.
 
 #+begin_src emacs-lisp
-  (require-package 'ido-vertical-mode)
-  (ido-vertical-mode) ;; autoloaded
+  (use-package ido-vertical-mode
+    :commands ido-vertical-mode
+    :init (ido-vertical-mode)
+    :config (setq ido-max-prospects 5)
+    :ensure ido-vertical-mode)
 #+end_src
 
 Because it's displayed vertically and I want to save screen real estate, I want
 to reduce the maximum number of candidates ido displays:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq ido-max-prospects 5)
 #+end_src
 

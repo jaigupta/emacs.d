@@ -1209,6 +1209,7 @@ also provides a macro to auto-install packages on demand.
 
 #+begin_src emacs-lisp
   (require-package 'use-package)
+  (require 'use-package)
 #+end_src
 
 *** diminish

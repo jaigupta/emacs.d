@@ -1237,7 +1237,13 @@ Diminish =subword-mode=, =eldoc-mode=, and =auto-revert-mode=:
 [[https://github.com/Bruce-Connor/paradox][paradox]] is an advanced package.el frontend with GitHub integration.
 
 #+begin_src emacs-lisp
-  (require-package 'paradox)
+  (use-package paradox
+    :commands paradox-list-packages
+    :init (bw/add-launcher "p" 'paradox-list-packages)
+    :config (progn
+              (setq paradox-automatically-star t)
+              (setq paradox-github-token (bw/get-keychain-password "paradox-github-token")))
+    :ensure paradox)
 #+end_src
 
 Force =paradox= into a [[fullframe]]:
@@ -1250,14 +1256,14 @@ Force =paradox= into a [[fullframe]]:
 Automatically 'star' packages on GitHub after I install them (so I can easily
 follow changes to them):
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq paradox-automatically-star t)
   (setq paradox-github-token (bw/get-keychain-password "paradox-github-token"))
 #+end_src
 
 Add launch command:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (bw/add-launcher "p" 'paradox-list-packages)
 #+end_src
 

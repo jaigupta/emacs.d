@@ -1249,10 +1249,10 @@ Diminish =subword-mode=, =eldoc-mode=, and =auto-revert-mode=:
   (use-package paradox
     :commands paradox-list-packages
     :init (bw/add-launcher "p" 'paradox-list-packages)
-    :config (progn
-              (setq paradox-automatically-star t)
-              (setq paradox-github-token (bw/get-keychain-password "paradox-github-token"))
-              (fullframe paradox-list-packages paradox-quit-and-close nil))
+    :config
+    (setq paradox-automatically-star t)
+    (setq paradox-github-token (bw/get-keychain-password "paradox-github-token"))
+    (fullframe paradox-list-packages paradox-quit-and-close nil)
     :ensure paradox)
 #+end_src
 

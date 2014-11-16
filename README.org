@@ -2307,6 +2307,12 @@ There's no official Markdown file extension, so support all the unofficial ones:
 good way to edit Lisp, Clojure etc. files. [[http://www.emacswiki.org/emacs/ParEdit][More on EmacsWiki]].
 
 #+begin_src emacs-lisp
+  (use-package paredit
+    :commands enable-paredit-mode
+    :ensure paredit)
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
   (require-package 'paredit)
 #+end_src
 

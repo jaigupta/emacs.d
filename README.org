@@ -1339,7 +1339,9 @@ Move =smex='s cache file out of the home directory:
 frame using advice.
 
 #+begin_src emacs-lisp
-  (require-package 'fullframe)
+  (use-package fullframe
+    :commands fullframe
+    :ensure fullframe)
 #+end_src
 
 *** magit

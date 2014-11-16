@@ -1468,7 +1468,8 @@ Finally we can install Magit:
 [[https://github.com/magit/git-modes][gitignore-mode]] is a major mode for editing =gitignore= files:
 
 #+begin_src emacs-lisp
-  (require-package 'gitignore-mode)
+  (use-package gitignore-mode
+    :ensure gitignore-mode)
 #+end_src
 
 *** gitconfig-mode
@@ -1476,7 +1477,8 @@ Finally we can install Magit:
 [[https://github.com/magit/git-modes][gitconfig-mode]] is a major more for editing =gitconfig= files:
 
 #+begin_src emacs-lisp
-  (require-package 'gitconfig-mode)
+  (use-package gitconfig-mode
+    :ensure gitignore-mode)
 #+end_src
 
 *** ido-ubiquitous

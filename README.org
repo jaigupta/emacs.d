@@ -1293,9 +1293,9 @@ I only want this to be installed and enabled on OS X.
 #+begin_src emacs-lisp
   (use-package exec-path-from-shell
     :if (and (eq system-type 'darwin) (display-graphic-p))
-    :init (progn
-            (setq exec-path-from-shell-variables '("PATH"  "MANPATH" "SHELL"))
-            (exec-path-from-shell-initialize))
+    :init
+    (setq exec-path-from-shell-variables '("PATH"  "MANPATH" "SHELL"))
+    (exec-path-from-shell-initialize)
     :ensure exec-path-from-shell)
 #+end_src
 

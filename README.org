@@ -1358,12 +1358,34 @@ frame using advice.
 [[https://github.com/magit/magit][Magit]] is an Emacs interface to Git. It's very feature-rich and I find it
 intuitive.
 
+#+begin_src emacs-lisp
+  (use-package magit
+    :commands (magit-status magit-grep)
+    :bind (("C-c g" . magit-status)
+           ("C-c f" . magit-grep))
+    :init
+    (bw/add-launcher "g" #'magit-status)
+    (delete 'Git vc-handled-backends)
+    :config
+    (setq magit-completing-read-function 'magit-ido-completing-read)
+    (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
+    (setq magit-status-buffer-switch-function 'switch-to-buffer)
+    (setq magit-diff-refine-hunk t)
+    (setq magit-rewrite-inclusive 'ask)
+    (setq magit-save-some-buffers t)
+    (setq magit-process-popup-time 10)
+    (setq magit-set-upstream-on-push t)
+    (after-load 'fullframe
+      (fullframe magit-status magit-mode-quit-window nil))
+    :ensure magit)
+#+end_src
+
 **** Keyboard shortcuts
 
 =magit-status= is the main command to launch Magit. It's =autoloaded= so I don't
 need to load Magit first.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (global-set-key (kbd "C-c g") 'magit-status)
   (bw/add-launcher "g" 'magit-status)
 #+end_src
@@ -1371,7 +1393,7 @@ need to load Magit first.
 =magit-grep= isn't =autoloaded=, so I need to explicitly load it before binding
 it:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (autoload 'magit-grep "magit" "Grep for files" t)
   (global-set-key (kbd "C-c f") 'magit-grep)
 #+end_src
@@ -1380,7 +1402,7 @@ it:
 
 Since I use Magit I don't need to use Emacs's native [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Version-Control.html][vc-mode]]:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (delete 'Git vc-handled-backends)
 #+end_src
 
@@ -1388,7 +1410,7 @@ Since I use Magit I don't need to use Emacs's native [[https://www.gnu.org/softw
 
 When performing a [[http://www.gnu.org/software/emacs/manual/html_node/elisp/Minibuffer-Completion.html][completing-read]] within Magit, I'd like to use IDO:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-completing-read-function 'magit-ido-completing-read)
 #+end_src
 
@@ -1396,51 +1418,51 @@ When I create a new local branch from remote, by default I want it to be named
 the same as the remote branch (default is =$(remotename)-$(branchname)=, eg
 =origin-my-branch=):
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
 #+end_src
 
 Open the =magit-status= buffer in the same window as the current buffer:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-status-buffer-switch-function 'switch-to-buffer)
 #+end_src
 
 Highlight individual word and letter changes when showing hunk diff overlays:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-diff-refine-hunk t)
 #+end_src
 
 When [[http://magit.github.io/master/magit.html#Rewriting][rewriting]], always ask me if I want to include the revision at point in the
 rewrite:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-rewrite-inclusive 'ask)
 #+end_src
 
 When Magit asks me to save modified buffers, ask me about them:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-save-some-buffers t)
 #+end_src
 
 When Magit takes a while to call out to Git, pop the process buffer after 10
 seconds so I can look for issues:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-process-popup-time 10)
 #+end_src
 
 When pushing a branch without a remote, ask me which remote to set it to:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-set-upstream-on-push t)
 #+end_src
 
 When =magit-auto-revert-mode= is enabled, diminish its [[http://www.gnu.org/software/emacs/manual/html_node/elisp/Defining-Minor-Modes.html][lighter]] in the modeline:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq magit-auto-revert-mode-lighter "")
 #+end_src
 
@@ -1449,7 +1471,7 @@ When =magit-auto-revert-mode= is enabled, diminish its [[http://www.gnu.org/soft
 If =fullframe= is installed (see below), use it to make =magit-status= take over
 the entire frame:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (after-load 'fullframe
     (fullframe magit-status magit-mode-quit-window nil))
 #+end_src
@@ -1459,7 +1481,7 @@ the entire frame:
 
 Finally we can install Magit:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (require-package 'magit)
 #+end_src
 

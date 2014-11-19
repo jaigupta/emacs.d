@@ -2453,13 +2453,18 @@ Finally enable the CIDER minor mode in Clojure buffers:
 broad range of template languages and is highly configurable.
 
 #+begin_src emacs-lisp
-  (require-package 'web-mode)
+  (use-package web-mode
+    :commands web-mode
+    :mode "\\.\\(html\\|html\\.erb\\|mustache\\|jinja\\|php\\)\\'"
+    :config (setq web-mode-engines-alist
+                  '(("\\.jinja\\'" . "django")))
+    :ensure web-mode)
 #+end_src
 
 [[http://jinja.pocoo.org/docs/][Jinja]] templates are mostly like [[https://docs.djangoproject.com/en/dev/topics/templates/][Django templates]], so just force them to behave
 like that:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (after-load 'web-mode
     (setq web-mode-engines-alist
           '(("\\.jinja\\'" . "django"))))
@@ -2467,7 +2472,7 @@ like that:
 
 Enable [[web-mode]] by default for several common file extensions:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (dolist (alist '(("\\.html$'" . web-mode)
                    ("\\.html\\.erb$" . web-mode)
                    ("\\.mustache$" . web-mode)

@@ -2141,12 +2141,10 @@ And then bind that to the functions evil uses to complete:
 perform on-the-fly syntax checking and linting.
 
 #+begin_src emacs-lisp
-  (require-package 'flycheck)
-  (after-load 'flycheck
-    (setq
-     ;; don't show anything in the left fringe
-     flycheck-indication-mode nil))
-  (require 'flycheck)
+  (use-package flycheck
+    :commands (flycheck-mode flycheck-mode-on-safe)
+    :init (setq flycheck-indication-mode nil)
+    :ensure flycheck)
 #+end_src
 
 *** javascript

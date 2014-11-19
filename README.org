@@ -2518,7 +2518,7 @@ Regrettably I need to occasionally edit [[http://www.yaml.org][YAML]].
 #+begin_src emacs-lisp
   (use-package yaml-mode
     :commands yaml-mode
-    :mode "\\.yml|yaml\\'"
+    :mode "\\.ya?ml\\'"
     :ensure yaml-mode)
 #+end_src
 

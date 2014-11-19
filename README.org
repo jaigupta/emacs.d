@@ -1219,13 +1219,13 @@ one's modeline.
 
 #+begin_src emacs-lisp
   (use-package diminish
-    :init (progn
-            (after-load 'subword
-              (diminish 'subword-mode))
-            (after-load 'eldoc
-              (diminish 'eldoc-mode))
-            (after-load 'autorevert
-              (diminish 'auto-revert-mode)))
+    :idle
+    (after-load 'subword
+      (diminish 'subword-mode))
+    (after-load 'eldoc
+      (diminish 'eldoc-mode))
+    (after-load 'autorevert
+      (diminish 'auto-revert-mode))
     :ensure diminish)
 #+end_src
 

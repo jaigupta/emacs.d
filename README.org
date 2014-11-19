@@ -2372,7 +2372,7 @@ and install and load =company-go=:
 #+begin_src emacs-lisp
   (use-package markdown-mode
     :commands markdown-mode
-    :mode "\\.md\\|markdown\\|ft\\'"
+    :mode "\\.\\(md\\|markdown\\|ft\\)\\'"
     :ensure markdown-mode)
 #+end_src
 

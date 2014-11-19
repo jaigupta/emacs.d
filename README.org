@@ -2390,8 +2390,16 @@ There's no official Markdown file extension, so support all the unofficial ones:
 good way to edit Lisp, Clojure etc. files. [[http://www.emacswiki.org/emacs/ParEdit][More on EmacsWiki]].
 
 #+begin_src emacs-lisp
+  (defun bw/conditionally-enable-paredit-mode ()
+    (if (eq this-command 'eval-expression)
+        (enable-paredit-mode)))
+
   (use-package paredit
     :commands enable-paredit-mode
+    :init
+    (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+    (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+    (add-hook 'minibuffer-setup-hook #'bw/conditionally-enable-paredit-mode)
     :ensure paredit)
 #+end_src
 
@@ -2401,14 +2409,14 @@ good way to edit Lisp, Clojure etc. files. [[http://www.emacswiki.org/emacs/ParE
 
 Enable it for Emacs Lisp files:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
   (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 #+end_src
 
 Conditionally enable it in the minibuffer when entering an expression:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (defun bw/conditionally-enable-paredit-mode ()
     (if (eq this-command 'eval-expression)
         (enable-paredit-mode)))

@@ -1574,17 +1574,14 @@ easier to watch the video on that link than explain).
     :bind (("C-c SPC" . ace-jump-char-mode)
            ("C-<return>" . ace-jump-line-mode))
     :init
-    (progn
-      (bw/add-launcher "j" #'ace-jump-char-mode)
-      (bw/add-launcher "J" #'ace-jump-line-mode)
-
-      (after-load 'evil
-        (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-char-mode)
-        (define-key evil-normal-state-map (kbd "<return>") 'ace-jump-line-mode))
-
-      (after-load 'evil
-        (define-key evil-motion-state-map (kbd "SPC") 'ace-jump-char-mode)
-        (define-key evil-motion-state-map (kbd "<return>") 'ace-jump-line-mode)))
+    (bw/add-launcher "j" #'ace-jump-char-mode)
+    (bw/add-launcher "J" #'ace-jump-line-mode)
+    (after-load 'evil
+      (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-char-mode)
+      (define-key evil-normal-state-map (kbd "<return>") 'ace-jump-line-mode))
+    (after-load 'evil
+      (define-key evil-motion-state-map (kbd "SPC") 'ace-jump-char-mode)
+      (define-key evil-motion-state-map (kbd "<return>") 'ace-jump-line-mode))
     :ensure ace-jump-mode)
 #+end_src
 

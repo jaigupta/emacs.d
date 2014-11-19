@@ -2040,9 +2040,8 @@ evil to start in =emacs-mode=, for example:
 #+begin_src emacs-lisp
   (use-package smartparens
     :commands show-smartparens-global-mode
-    :idle (progn
-            (use-package smartparens-config
-              :init (show-smartparens-global-mode 1)))
+    :idle (use-package smartparens-config
+            :init (show-smartparens-global-mode 1))
     :ensure smartparens)
 #+end_src
 

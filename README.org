@@ -1314,9 +1314,9 @@ known as =M-x=).
 #+begin_src emacs-lisp
   (use-package smex
     :commands smex
-    :config (progn
-              (setq-default smex-key-advice-ignore-menu-bar t)
-              (setq smex-save-file (expand-file-name ".smex-items" bw/tmp-local-dir)))
+    :config
+    (setq-default smex-key-advice-ignore-menu-bar t)
+    (setq smex-save-file (expand-file-name ".smex-items" bw/tmp-local-dir))
     :ensure smex)
 #+end_src
 

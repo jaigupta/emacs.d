@@ -2482,18 +2482,22 @@ Enable [[web-mode]] by default for several common file extensions:
 through classes etc. using completion for methods.
 
 #+begin_src emacs-lisp
-  (require-package 'idomenu)
+  (use-package idomenu
+    :commands idomenu
+    :init (bw/add-launcher "i" 'idomenu)
+    :config (setq imenu-auto-rescan t)
+    :ensure idomenu)
 #+end_src
 
 Add it to my launcher:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (bw/add-launcher "i" 'idomenu)
 #+end_src
 
 Automatically rescan the current file so =imenu= is up to date:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq imenu-auto-rescan t)
 #+end_src
 

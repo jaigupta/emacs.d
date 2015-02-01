@@ -1702,8 +1702,10 @@ I use the [[https://github.com/bbatsov/zenburn-emacs][zenburn-theme]] on a TTY E
 The [[https://github.com/sellout/emacs-color-theme-solarized][color-theme-solarized]] theme is the 'official' theme for Emacs, and it works
 very well on terminals.
 
+I load my own custom version.
+
 #+begin_src emacs-lisp
-  (require-package 'color-theme-solarized)
+  (add-to-list 'custom-theme-load-path (bw/join-dirs bw/dotfiles-dir "vendor/emacs-color-theme-solarized"))
 #+end_src
 
 *** magit-find-file
